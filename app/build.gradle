@@ -1,14 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    signingConfigs {
-        config {
-            keyAlias 'DuckJing'
-            keyPassword 'zhong520'
-            storeFile file('D:/hl/Android/Duck.jks')
-            storePassword 'zhong520'
-        }
-    }
+
     compileSdkVersion 29
     defaultConfig {
         applicationId "duckjing.led"
@@ -22,7 +15,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
         }
     }
 }
