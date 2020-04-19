@@ -1,13 +1,15 @@
 package duckjing.led;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.BatteryManager;
 import android.provider.Settings;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -16,7 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends Activity implements View.OnClickListener {
 
     private static final String TAG = "DuckJing";
 
@@ -50,6 +52,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
 
+        if(SPUtils.getFirst()){
+            AlertDialog.Builder builder=new AlertDialog.Builder(this);  //先得到构造器
+            builder.setTitle("卢本伟吊打卢伟冰"); //设置标题
+            builder.setMessage("使用须知:\n" +
+                    "        1.需要root\n" +
+                    "        2.息屏状态下,有通知则闪烁;充电常亮\n" +
+                    "        3.默认闪烁频率为每两秒闪一下"+"" +
+                    "\n \n \n       !!!!!!!需给软件自启权限!!!!\n" +
+                    "       如果不能后台运行，重启手机即可"); //设置内容
+            builder.setIcon(R.mipmap.lbw);//设置图标，图片id即可
+            builder.setPositiveButton("我知道了，马上开始吊打卢伟冰", new DialogInterface.OnClickListener() { //设置确定按钮
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss(); //关闭dialog
+                    Toast.makeText(MainActivity.this, "开启你的炸弹秀", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.create().show();
+
+            SPUtils.writeDate("isF",false);
+        }
 
     }
 

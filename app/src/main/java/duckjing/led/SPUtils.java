@@ -47,6 +47,10 @@ public class SPUtils {
        return context.getSharedPreferences("settings", Context.MODE_PRIVATE).getInt("num",timeNum);
 
    }
+    public static boolean getFirst(){
+        return context.getSharedPreferences("settings", Context.MODE_PRIVATE).getBoolean("isF",true);
+
+    }
     public static int getTime(){
         return context.getSharedPreferences("settings", Context.MODE_PRIVATE).getInt("time",time4show);
 
@@ -55,6 +59,11 @@ public class SPUtils {
     public static void writeDate(String key,int data) {
         SharedPreferences.Editor edit = get();
         edit.putInt(key,data);
+        edit.commit();
+    }
+    public static void writeDate(String key,boolean data) {
+        SharedPreferences.Editor edit = get();
+        edit.putBoolean(key,data);
         edit.commit();
     }
 }
